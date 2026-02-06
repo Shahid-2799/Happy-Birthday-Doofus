@@ -97,22 +97,6 @@ body {
   animation: fall linear forwards;
   z-index: 3;
 }
-/* CODE LINK */
-.view-code {
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-  font-size: 0.9rem;
-  color: #4b145b;
-  text-decoration: none;
-  opacity: 0.6;
-  z-index: 999;
-}
-
-.view-code:hover {
-  opacity: 1;
-  text-decoration: underline;
-}
 
 @keyframes fall {
   to {
@@ -121,4 +105,5 @@ body {
   }
 
 }
+
 
