@@ -1,0 +1,106 @@
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  transition: background 1s ease;
+}
+
+/* GRADIENT BACKGROUNDS */
+.bg1 { background: linear-gradient(120deg, #ff9a9e, #fad0c4); }
+.bg2 { background: linear-gradient(120deg, #a1c4fd, #c2e9fb); }
+.bg3 { background: linear-gradient(120deg, #fbc2eb, #a6c1ee); }
+.bg4 { background: linear-gradient(120deg, #fde68a, #fef3c7); }
+.bg5 { background: linear-gradient(120deg, #f6d365, #fda085); }
+.bg6 { background: linear-gradient(120deg, #cfd9df, #e2ebf0); }
+.bgFinal { background: linear-gradient(120deg, #ff2f6d, #ff8fab); }
+
+/* START SCREEN */
+#startScreen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+#startBtn {
+  font-size: 1.5rem;
+  padding: 20px 30px;
+  border: none;
+  border-radius: 14px;
+  background: white;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+/* STAGE */
+#stage {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 30px 40px;
+  border-radius: 18px;
+  max-width: 80%;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  z-index: 2;
+}
+
+#stage.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* TEXT */
+.big { font-size: 3rem; }
+.bold { font-weight: 800; }
+.line { font-size: 2rem; font-weight: 600; }
+.cross { font-size: 5rem; color: red; }
+
+/* FINAL TEXT FIX */
+.final {
+  font-size: 3.8rem;
+  font-weight: 900;
+  color: #4b145b; /* deep purple */
+  text-shadow:
+    0 2px 4px rgba(0,0,0,0.25),
+    0 0 14px rgba(255, 255, 255, 0.7);
+}
+
+/* FLOATING EMOJIS */
+.emoji-layer span {
+  position: absolute;
+  bottom: -10vh;
+  animation: floatUp linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-120vh);
+    opacity: 0;
+  }
+}
+
+/* CONFETTI */
+.confetti {
+  position: fixed;
+  top: -10px;
+  width: 8px;
+  height: 14px;
+  animation: fall linear forwards;
+  z-index: 3;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}

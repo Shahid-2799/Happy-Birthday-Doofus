@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Sister 🎉</title>
+  <link rel="stylesheet" href="stylee.css" />
+</head>
+<body>
+
+  <!-- START SCREEN -->
+  <div id="startScreen">
+    <button id="startBtn">Tap to Start 🎂</button>
+  </div>
+
+  <!-- FLOATING EMOJIS -->
+  <div class="emoji-layer"></div>
+
+  <!-- MAIN STAGE -->
+  <div id="stage"></div>
+
+  <audio id="birthdaySong">
+    <source src="happy-birthday.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const stage = document.getElementById("stage");
+    const startScreen = document.getElementById("startScreen");
+    const startBtn = document.getElementById("startBtn");
+    const song = document.getElementById("birthdaySong");
+    const emojiLayer = document.querySelector(".emoji-layer");
+
+    const scenes = [
+      { text: "Roses are red 🌹", class: "big bold", bg: "bg1", emojis: ["🌹","✨"], time: 2000 },
+      { text: "Violets are blue 🔵", class: "big bold", bg: "bg2", emojis: ["🔵","✨"], time: 2000 },
+      { text: "❌", class: "cross", bg: "bg3", emojis: ["❌","💥"], time: 1500 },
+      { text: "Unth ucha", class: "line", bg: "bg4", emojis: ["🐪","🐫","🐪"], time: 1200 },
+      { text: "Unth ki peeth uchiiiii", class: "line", bg: "bg5", emojis: ["🐪","🐫","🐪","✨"], time: 1500 },
+      { text: "Isliye 13 feb ko awaaz goonji", class: "line", bg: "bg6", emojis: ["🎤","✨"], time: 1800 },
+      { text: "Happy Birthdayyyy Choti Bacchi🎉", class: "final", bg: "bgFinal", emojis: ["🎉","🎈","💖","✨"], final: true }
+    ];
+
+    let index = 0;
+
+    function spawnEmojis(emojiSet, count = 20) {
+      emojiLayer.innerHTML = "";
+      for (let i = 0; i < count; i++) {
+        const span = document.createElement("span");
+        span.textContent = emojiSet[Math.floor(Math.random() * emojiSet.length)];
+        span.style.left = Math.random() * 100 + "vw";
+        span.style.animationDuration = 4 + Math.random() * 4 + "s";
+        span.style.fontSize = 1.5 + Math.random() * 1.5 + "rem";
+        emojiLayer.appendChild(span);
+      }
+    }
+
+    function confettiBurst() {
+      for (let i = 0; i < 100; i++) {
+        const conf = document.createElement("span");
+        conf.className = "confetti";
+        conf.style.left = Math.random() * 100 + "vw";
+        conf.style.backgroundColor = `hsl(${Math.random() * 360}, 80%, 60%)`;
+        conf.style.animationDuration = 2 + Math.random() * 2 + "s";
+        document.body.appendChild(conf);
+      }
+    }
+
+    function playScene() {
+      const scene = scenes[index];
+      if (!scene) return;
+
+      document.body.className = scene.bg;
+      spawnEmojis(scene.emojis, scene.emojis.includes("🐪") ? 30 : 18);
+
+      stage.className = "";
+      stage.textContent = scene.text;
+      stage.classList.add("show", ...scene.class.split(" "));
+
+      if (scene.final) {
+        song.volume = 0.8;
+        song.play().catch(() => {});
+        confettiBurst();
+        return;
+      }
+
+      index++;
+      setTimeout(() => {
+        stage.classList.remove("show");
+        setTimeout(playScene, 500);
+      }, scene.time);
+    }
+
+    startBtn.addEventListener("click", () => {
+      startScreen.style.display = "none";
+      playScene();
+    });
+  </script>
+
+</body>
+</html>
