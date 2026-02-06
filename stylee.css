@@ -97,10 +97,16 @@ body {
   animation: fall linear forwards;
   z-index: 3;
 }
+/* CODE LINK */
+.view-code:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
 
 @keyframes fall {
   to {
     transform: translateY(110vh) rotate(360deg);
     opacity: 0;
   }
+
 }
